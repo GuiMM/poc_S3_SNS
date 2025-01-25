@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: payment-51-burguer-app
+  name: payment-51-burguer-app
+spec:
+  type: LoadBalancer
+  allocateLoadBalancerNodePorts: true
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30792
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: payment-51-burguer-app
+  sessionAffinity: None
