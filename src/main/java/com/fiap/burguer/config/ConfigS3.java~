@@ -19,15 +19,12 @@ public class ConfigS3 {
     @Autowired
     private Environment environment;
 
-    @Value("${aws.accessKeyId}")
+
     String accessKeyId;
 
-    @Value("${aws.secretAccessKey}")
     String secretAccessKey ;
 
-    @Value("${aws.token}")
     String token;
-    @Value("${aws.regionName}")
     String regionName;
 
     AwsCredentials credentials = AwsSessionCredentials.create(accessKeyId, secretAccessKey,token);

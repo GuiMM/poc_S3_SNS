@@ -1,5 +1,7 @@
 package com.fiap.burguer.controller;
 
+import com.amazonaws.services.sns.AmazonSNS;
+import com.fiap.burguer.publish.SnsProducer;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,6 +22,7 @@ import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.identity.spi.AwsCredentialsIdentity;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,9 +36,13 @@ public class pocController {
 
     @Autowired
     private S3Client s3Client;
+    @Autowired
+    private AmazonSNS snsClient;
 
-    @Value("${s3.bucketName}")
-    private String BUCKET_NAME;
+    @Autowired
+    private SnsProducer snsProducer;
+
+    private String BUCKET_NAME = "poc-video-bb";
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "poc-video-original")
@@ -53,15 +60,19 @@ public class pocController {
         metadata.put("company", "Baeldung");
         metadata.put("environment", "development");
 
-        criarBucket(BUCKET_NAME);
+        //criarBucket(BUCKET_NAME);
 
-        s3Client.putObject(request ->
-                        request
-                                .bucket(BUCKET_NAME)
-                                .key(file.getName())
-                                .metadata(metadata)
-                                .ifNoneMatch("*"),
-                RequestBody.fromBytes(file.getBytes()));
+
+
+//        s3Client.putObject(request ->
+//                        request
+//                                .bucket(BUCKET_NAME)
+//                                .key(file.getOriginalFilename())
+//                                //.metadata(metadata)
+//                                .ifNoneMatch("*"),
+//                RequestBody.fromBytes(file.getBytes()));
+
+        snsProducer.publishStatusEvent("feito upload do arquivo com sucesso");
 
 
         return ResponseEntity.ok(Collections.singletonList("feito upload do arquivo com sucesso"));

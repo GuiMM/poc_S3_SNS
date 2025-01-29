@@ -23,10 +23,16 @@
     <dependencies>
         <!-- Removido JPA e JDBC, pois são desnecessários para MongoDB -->
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
         <!-- Web dependency -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- Actuator -->
@@ -57,12 +63,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Test -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
 
         <!-- S3 AWS SDK  -->
         <dependency>
@@ -70,6 +71,38 @@
             <artifactId>s3</artifactId>
             <version>2.29.0</version>
         </dependency>
+
+        <!-- SNS AWS SDK  -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>sns</artifactId>
+            <version>2.29.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-sns</artifactId>
+            <version>1.12.196</version>
+        </dependency>
+
+        <!-- SNS AWS SDK -->
+
+        <!-- SQS AWS SDK -->
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-aws</artifactId>
+            <version>2.2.1.RELEASE</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-aws-messaging -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-aws-messaging</artifactId>
+            <version>2.2.1.RELEASE</version>
+        </dependency>
+
+        <!-- SQS AWS SDK -->
 
         <!-- Swagger for API documentation -->
         <dependency>
@@ -84,11 +117,7 @@
             <artifactId>spring-boot-starter-data-rest</artifactId>
             <version>3.3.5</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
 
     <build>
