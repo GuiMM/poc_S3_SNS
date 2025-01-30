@@ -20,15 +20,15 @@ public class ConfigS3 {
     private Environment environment;
 
     @Value("${aws.accessKeyId}")
-    String accessKeyId;
+    String accessKeyId ;
 
     @Value("${aws.secretAccessKey}")
-    String secretAccessKey ;
+    String secretAccessKey;
 
     @Value("${aws.token}")
     String token;
-    @Value("${aws.regionName}")
-    String regionName;
+
+    String regionName = Region.US_EAST_1.toString();
 
     AwsCredentials credentials = AwsSessionCredentials.create(accessKeyId, secretAccessKey,token);
 

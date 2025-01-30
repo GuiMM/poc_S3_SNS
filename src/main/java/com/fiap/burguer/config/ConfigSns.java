@@ -2,6 +2,7 @@ package com.fiap.burguer.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicSessionCredentials;
+import com.amazonaws.regions.RegionUtils;
 import com.amazonaws.services.sns.model.SetTopicAttributesRequest;
 import com.amazonaws.services.sns.model.Topic;
 import com.amazonaws.services.sns.model.GetTopicAttributesRequest;
@@ -12,24 +13,26 @@ import org.springframework.context.annotation.Configuration;
 
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
+import software.amazon.awssdk.regions.Region;
+
 
 @Configuration
 public class ConfigSns {
 
 
     @Value("${aws.accessKeyId}")
-    String accessKeyId;
+    String accessKeyId ;
 
     @Value("${aws.secretAccessKey}")
-    String secretAccessKey ;
+    String secretAccessKey;
 
     @Value("${aws.token}")
     String token;
-    @Value("${aws.regionName}")
-    String regionName;
+
+    String regionName = Region.US_EAST_1.toString();
 
     @Value("${aws.accountId}")
-    String accountId;
+    String accountId ;
 
     @Value("${aws.topic}")
     String topic;
@@ -62,9 +65,6 @@ public class ConfigSns {
 
     @Bean(name = "productEventsTopic")
     public Topic snsProductEventsTopic() {
-
-
-
 
         GetTopicAttributesRequest getTopicAttributesRequest = new GetTopicAttributesRequest()
                 .withTopicArn(arn);
