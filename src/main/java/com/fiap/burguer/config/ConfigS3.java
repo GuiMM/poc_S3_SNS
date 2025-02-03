@@ -20,7 +20,7 @@ public class ConfigS3 {
     private Environment environment;
 
     @Value("${aws.accessKeyId}")
-    String accessKeyId ;
+    String accessKeyId;
 
     @Value("${aws.secretAccessKey}")
     String secretAccessKey;

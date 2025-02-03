@@ -17,13 +17,14 @@ import java.net.URI;
 public class ConfigSqs {
 
     @Value("${aws.accessKeyId}")
-    String accessKeyId ;
+    String accessKeyId;
 
     @Value("${aws.secretAccessKey}")
     String secretAccessKey;
 
     @Value("${aws.token}")
     String token;
+
 
     @Value("${aws.uriSqs}")
     String uriSqs;

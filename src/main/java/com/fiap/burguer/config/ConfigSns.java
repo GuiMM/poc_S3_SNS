@@ -21,7 +21,7 @@ public class ConfigSns {
 
 
     @Value("${aws.accessKeyId}")
-    String accessKeyId ;
+    String accessKeyId;
 
     @Value("${aws.secretAccessKey}")
     String secretAccessKey;
@@ -29,10 +29,11 @@ public class ConfigSns {
     @Value("${aws.token}")
     String token;
 
+
     String regionName = Region.US_EAST_1.toString();
 
     @Value("${aws.accountId}")
-    String accountId ;
+    String accountId;
 
     @Value("${aws.topic}")
     String topic;
